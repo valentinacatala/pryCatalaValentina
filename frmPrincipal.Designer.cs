@@ -1,7 +1,7 @@
 ﻿
 namespace pryCatalaValentina
 {
-    partial class Form1
+    partial class frmPrincipal
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@ namespace pryCatalaValentina
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
