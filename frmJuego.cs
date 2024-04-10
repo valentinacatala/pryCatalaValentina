@@ -35,6 +35,7 @@ namespace pryCatalaValentina
 
 
 
+
         }
 
         private void frmJuego_KeyDown(object sender, KeyEventArgs e)
