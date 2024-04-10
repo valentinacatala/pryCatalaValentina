@@ -23,24 +23,38 @@ namespace pryCatalaValentina
 
         private void frmJuego_Load(object sender, EventArgs e)
         {
-            objNaveJugador = new claseNave();
-
-            objNaveJugador.CrearJuego();
-            objNaveJugador.imagNave.Location = new Point(550, 550);
-            Controls.Add(objNaveJugador.imagNave);
-
-            objNaveJugador.CrearEnemigo();
-            objNaveJugador.imagNave.Location = new Point(200, 200);
-            Controls.Add(objNaveJugador.imagNave);
-
-
-
-
+            
         }
 
         private void frmJuego_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode==Keys.Right)
+            
+        }
+
+        private void frmJuego_Load_1(object sender, EventArgs e)
+        {
+            objNaveJugador = new claseNave();
+
+            objNaveJugador.CrearJuego();
+            objNaveJugador.imagNave.Location = new Point(300, 500);
+            Controls.Add(objNaveJugador.imagNave);
+
+            objNaveJugador.CrearEnemigo();
+            objNaveJugador.imagEnemigo1.Location = new Point(300, 200);
+            Controls.Add(objNaveJugador.imagEnemigo1);
+
+            objNaveJugador.CrearEnemigo();
+            objNaveJugador.imagEnemigo2.Location = new Point(100, 200);
+            Controls.Add(objNaveJugador.imagEnemigo2);
+
+            objNaveJugador.CrearEnemigo();
+            objNaveJugador.imagEnemigo3.Location = new Point(500, 200);
+            Controls.Add(objNaveJugador.imagEnemigo3);
+        }
+
+        private void frmJuego_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right)
             {
                 objNaveJugador.imagNave.Location = new Point(
                     objNaveJugador.imagNave.Location.X + 5, objNaveJugador.imagNave.Location.Y);
