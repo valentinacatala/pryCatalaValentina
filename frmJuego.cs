@@ -36,20 +36,31 @@ namespace pryCatalaValentina
             objNaveJugador = new claseNave();
 
             objNaveJugador.CrearJuego();
-            objNaveJugador.imagNave.Location = new Point(300, 500);
+            objNaveJugador.imagNave.Location = new Point(300, 600);
             Controls.Add(objNaveJugador.imagNave);
 
             objNaveJugador.CrearEnemigo();
-            objNaveJugador.imagEnemigo1.Location = new Point(300, 200);
+            objNaveJugador.imagEnemigo1.Location = new Point(350, 200);
             Controls.Add(objNaveJugador.imagEnemigo1);
 
             objNaveJugador.CrearEnemigo();
-            objNaveJugador.imagEnemigo2.Location = new Point(100, 200);
+            objNaveJugador.imagEnemigo2.Location = new Point(70, 200);
             Controls.Add(objNaveJugador.imagEnemigo2);
 
             objNaveJugador.CrearEnemigo();
-            objNaveJugador.imagEnemigo3.Location = new Point(500, 200);
+            objNaveJugador.imagEnemigo3.Location = new Point(650, 200);
             Controls.Add(objNaveJugador.imagEnemigo3);
+
+            objNaveJugador.CrearEnemigo();
+            objNaveJugador.imagEnemigo4.Location = new Point(230, 70);
+            Controls.Add(objNaveJugador.imagEnemigo4);
+
+            objNaveJugador.CrearEnemigo();
+            objNaveJugador.imagEnemigo5.Location = new Point(500, 70);
+            Controls.Add(objNaveJugador.imagEnemigo5);
+
+            
+
         }
 
         private void frmJuego_KeyDown_1(object sender, KeyEventArgs e)
@@ -64,6 +75,11 @@ namespace pryCatalaValentina
                 objNaveJugador.imagNave.Location = new Point(
                     objNaveJugador.imagNave.Location.X - 5, objNaveJugador.imagNave.Location.Y);
             }
+            if (e.KeyCode == Keys.Space)
+            {
+                objNaveJugador.DispararBala();
+            }
+
         }
     }
 }
