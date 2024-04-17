@@ -10,14 +10,30 @@ using System.Windows.Forms;
 
 namespace pryCatalaValentina
 {
-    public partial class Form1 : Form
+    public partial class frmPrincipal : Form
     {
-        public Form1()
+        public frmPrincipal()
         {
             InitializeComponent();
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+        
+
+        private void firmasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void juegoToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
