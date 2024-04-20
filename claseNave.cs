@@ -43,7 +43,7 @@ namespace pryCatalaValentina
             imagEnemigo1= new PictureBox();
             imagEnemigo1.SizeMode = PictureBoxSizeMode.StretchImage;
             imagEnemigo1.ImageLocation = "https://steamuserimages-a.akamaihd.net/ugc/510378163431176780/C5FF698338D98764BD4A44185C169A7F3B8FE7AD/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true";
-            imagEnemigo1.Size = new Size(170, 100);
+            imagEnemigo1.Size = new Size(150, 100);
 
             vida = 25;
             nombre = "Enemigo2";
@@ -51,35 +51,23 @@ namespace pryCatalaValentina
             imagEnemigo2 = new PictureBox();
             imagEnemigo2.SizeMode = PictureBoxSizeMode.StretchImage;
             imagEnemigo2.ImageLocation = "https://static.wikia.nocookie.net/villains/images/b/b1/Cover256x256-99b1c09b43754854941695731f08bee7.jpg/revision/latest/scale-to-width-down/250?cb=20170622072933";
-            imagEnemigo2.Size = new Size(130, 100);
+            imagEnemigo2.Size = new Size(90, 100);
 
             vida = 25;
             nombre = "Enemigo3";
             puntosdaño = 2;
             imagEnemigo3 = new PictureBox();
             imagEnemigo3.SizeMode = PictureBoxSizeMode.StretchImage;
-            imagEnemigo3.ImageLocation = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT72ejL_hd9gjTFSAXRltuO0FoLKlubQw7Cxd-T5fZUioR3BJ8cbBdhJEl1dFNToTlGdOU&usqp=CAU";
-            imagEnemigo3.Size = new Size(130, 100);
+            imagEnemigo3.ImageLocation = "https://art.pixilart.com/thumb/5ce2059e8521.png";
+            imagEnemigo3.Size = new Size(90, 100);
 
-            vida = 25;
-            nombre = "Enemigo4";
-            puntosdaño = 2;
-            imagEnemigo4 = new PictureBox();
-            imagEnemigo4.SizeMode = PictureBoxSizeMode.StretchImage;
-            imagEnemigo4.ImageLocation = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT72ejL_hd9gjTFSAXRltuO0FoLKlubQw7Cxd-T5fZUioR3BJ8cbBdhJEl1dFNToTlGdOU&usqp=CAU";
-            imagEnemigo4.Size = new Size(130, 100);
-
-            vida = 25;
-            nombre = "Enemigo5";
-            puntosdaño = 2;
-            imagEnemigo5 = new PictureBox();
-            imagEnemigo5.SizeMode = PictureBoxSizeMode.StretchImage;
-            imagEnemigo5.ImageLocation = "https://static.wikia.nocookie.net/villains/images/b/b1/Cover256x256-99b1c09b43754854941695731f08bee7.jpg/revision/latest/scale-to-width-down/250?cb=20170622072933";
-            imagEnemigo5.Size = new Size(130, 100);
         }
 
+        
         public void DispararBala()
         {
+           
+
             imagBala = new PictureBox();
             imagBala.SizeMode = PictureBoxSizeMode.StretchImage;
             imagBala.ImageLocation = "https://toppng.com/uploads/thumbnail/alaga-galaga-missile-11562887504dfmxt6dqa0.png";
@@ -92,31 +80,33 @@ namespace pryCatalaValentina
             timerBala.Interval = 20;
             timerBala.Tick += (sender, e) =>
             {
-                imagBala.Top -= 5;
+                imagBala.Top -= 10;
                 imagBala.BringToFront();
 
-                
-                foreach (var enemigo in new[] { imagEnemigo1, imagEnemigo2, imagEnemigo3, imagEnemigo4, imagEnemigo5 })
+                foreach (Control control in Form.ActiveForm.Controls)
                 {
-                    if (imagBala.Bounds.IntersectsWith(enemigo.Bounds))
+                    if (control is PictureBox && control.Tag != null && control.Tag.ToString() == "Enemigo")
                     {
-                        
-                        timerBala.Stop(); 
-                        imagBala.Dispose(); 
-                        enemigo.Dispose(); 
-
-                        return;
+                        PictureBox enemigo = (PictureBox)control;
+                        if (imagBala.Bounds.IntersectsWith(enemigo.Bounds))
+                        {
+                            timerBala.Stop();
+                            Form.ActiveForm.Controls.Remove(imagBala);
+                            Form.ActiveForm.Controls.Remove(enemigo);
+                            imagBala.Dispose();
+                            enemigo.Dispose();
+                            return;
+                        }
                     }
-                }
+                };
 
-                // Verificar si la bala está fuera de los límites del formulario y eliminarla si es así
                 if (imagBala.Top + imagBala.Height < 0)
                 {
-                    timerBala.Stop(); 
+                    timerBala.Stop();
+                    Form.ActiveForm.Controls.Remove(imagBala);
                     imagBala.Dispose();
                 }
             };
-
             timerBala.Start();
 
         }
