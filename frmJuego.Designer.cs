@@ -28,22 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            timerDisparos = new System.Windows.Forms.Timer(components);
+            timerEnemigos = new System.Windows.Forms.Timer(components);
             SuspendLayout();
+            // 
+            // timerDisparos
+            // 
+            timerDisparos.Tick += timerDisparos_Tick;
             // 
             // frmJuego
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            ClientSize = new System.Drawing.Size(800, 800);
+            ClientSize = new System.Drawing.Size(700, 591);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "frmJuego";
             Text = "frmJuego";
             Load += frmJuego_Load_1;
             KeyDown += frmJuego_KeyDown_1;
+            KeyPress += frmJuego_KeyPress;
             ResumeLayout(false);
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer timerDisparos;
+        private System.Windows.Forms.Timer timerEnemigos;
     }
 }
