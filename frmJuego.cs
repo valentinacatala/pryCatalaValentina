@@ -36,26 +36,102 @@ namespace pryCatalaValentina
         Random Aleatorio = new Random();
         Random PosicionX = new Random();
         Random PosicionY = new Random();
+       
         private void frmJuego_Load_1(object sender, EventArgs e)
         {
             //tamaño del formulario
-            this.Width = 700;
-            this.Height = 800;
+            this.Width = 900;
+            this.Height = 1000;
 
 
             objNaveJugador = new claseNave();
             objNaveJugador.CrearJuego();
-            objNaveJugador.imagNave.Location = new Point(200, 450);
+            objNaveJugador.imagNave.Location = new Point(350, 700);
             Controls.Add(objNaveJugador.imagNave);
 
+            GenerarEnemigos();
+            TimerNuevoEnemigo();
+        }
 
+
+        private void frmJuego_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right)
+            {
+                objNaveJugador.imagNave.Location = new Point(
+                    objNaveJugador.imagNave.Location.X + 5, objNaveJugador.imagNave.Location.Y);
+            }
+            if (e.KeyCode == Keys.Left)
+            {
+                objNaveJugador.imagNave.Location = new Point(
+                    objNaveJugador.imagNave.Location.X - 5, objNaveJugador.imagNave.Location.Y);
+            }
+
+        }
+
+        private void timerDisparos_Tick(object sender, EventArgs e)
+        {
+            if (imagBala != null)
+            {
+                imagBala.Top -= 10;
+                imagBala.BringToFront();
+
+                if (imagBala.Location.Y <= 0)
+                {
+
+                    imagBala.Dispose();
+                    imagBala = null;
+                    timerDisparos.Stop();
+                }
+                else
+                {
+                    // Comprueba si la bala colisiona con algún enemigo
+                    foreach (Control imagen in Controls)
+                    {
+                        if (imagen.Tag == "Enemigo" && imagBala.Bounds.IntersectsWith(imagen.Bounds))
+                        {
+                            imagBala.Dispose();
+                            imagen.Dispose();
+                            imagBala = null;
+                            timerDisparos.Stop();
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        private void frmJuego_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                imagBala = new PictureBox();
+                imagBala.SizeMode = PictureBoxSizeMode.StretchImage;
+                imagBala.ImageLocation = "https://toppng.com/uploads/thumbnail/alaga-galaga-missile-11562887504dfmxt6dqa0.png";
+                imagBala.Size = new Size(20, 30);
+                imagBala.Location = new Point(objNaveJugador.imagNave.Location.X + objNaveJugador.imagNave.Width / 2 - imagBala.Width / 2, objNaveJugador.imagNave.Location.Y);
+                Controls.Add(imagBala);
+
+                timerDisparos.Start();
+
+            }
+        }
+
+        private void GenerarEnemigos()
+        {
+            int posX = 0;
+            int posY = 0;
             int contador = 0;
+
             while (contador < 10)
             {
-                int posX = PosicionX.Next(0, 800);
-                int posY = PosicionY.Next(0, 400);
+                int codigoEnemigo = Aleatorio.Next(1000, 3000);
 
-                // Verificar si la posición generada se superpone con alguna de las posiciones de los enemigos existentes
+                posX = PosicionX.Next(0, 700);
+                posY = PosicionY.Next(0, 400);
+
                 bool posicion = true;
                 foreach (Control control in Controls)
                 {
@@ -74,7 +150,6 @@ namespace pryCatalaValentina
 
                 if (posicion)
                 {
-                    int codigoEnemigo = Aleatorio.Next(1000, 3000);
                     switch (codigoEnemigo)
                     {
                         case < 2000:
@@ -89,7 +164,7 @@ namespace pryCatalaValentina
                             Controls.Add(objNaveJugador.imagEnemigo2);
                             objNaveJugador.imagEnemigo2.Tag = "Enemigo";
                             break;
-                        case > 1000:
+                        case > 1500:
                             objNaveJugador.CrearEnemigo();
                             objNaveJugador.imagEnemigo3.Location = new Point(posX, posY);
                             Controls.Add(objNaveJugador.imagEnemigo3);
@@ -100,76 +175,40 @@ namespace pryCatalaValentina
                     }
                     contador++;
                 }
+
+
+
             }
         }
+        
 
-
-        private void frmJuego_KeyDown_1(object sender, KeyEventArgs e)
+        private void TimerNuevoEnemigo()
         {
-            if (e.KeyCode == Keys.Right)
-            {
-                objNaveJugador.imagNave.Location = new Point(
-                    objNaveJugador.imagNave.Location.X + 5, objNaveJugador.imagNave.Location.Y);
-            }
-            if (e.KeyCode == Keys.Left)
-            {
-                objNaveJugador.imagNave.Location = new Point(
-                    objNaveJugador.imagNave.Location.X - 5, objNaveJugador.imagNave.Location.Y);
-            }
-            
+            timerEnemigos.Interval = 100;
+            timerEnemigos.Tick += timerEnemigos_Tick;
+            timerEnemigos.Start();
         }
-
-        private void timerDisparos_Tick(object sender, EventArgs e)
+        private void timerEnemigos_Tick(object sender, EventArgs e)
         {
-            imagBala.Top -= 10;
-            imagBala.BringToFront();
-
-            if (imagBala != null && imagBala.Location.Y > 0)
+            bool EnemigosExistentes = false;
+        
+            foreach (Control control in Controls)
             {
-                imagBala.Location = new Point(imagBala.Location.X, imagBala.Location.Y - 10);
-                foreach (Control imagen in Controls)
+                if (control.Tag != null && control.Tag.ToString() == "Enemigo")
                 {
-                    if (imagen.Tag == "Enemigo")
-                    {
-                        if (imagBala.Bounds.IntersectsWith(imagen.Bounds))
-                        {
-                            timerDisparos.Stop();
-                            imagBala.Dispose();
-                            imagen.Dispose();
-
-                        }
-                    }
+                    EnemigosExistentes = true;
+                    break;
                 }
             }
-            else
+
+            // Si no hay enemigos, generar nuevos enemigos
+            if (!EnemigosExistentes)
             {
-                if (imagBala != null)
-                {
-                    timerDisparos.Stop();
-                    imagBala.Dispose();
-                    imagBala = null;
-                }
-            }
-            timerDisparos.Start();
-
-        }
-
-        private void frmJuego_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar ==(char) Keys.Space)
-            {
-                imagBala = new PictureBox();
-                imagBala.SizeMode = PictureBoxSizeMode.StretchImage;
-                imagBala.ImageLocation = "https://toppng.com/uploads/thumbnail/alaga-galaga-missile-11562887504dfmxt6dqa0.png";
-                imagBala.Size = new Size(30, 40);
-                imagBala.Location = new Point(objNaveJugador.imagNave.Location.X + (objNaveJugador.imagNave.Width / 2) - (objNaveJugador.imagBala.Width / 2), objNaveJugador.imagNave.Location.Y);
-
-                Controls.Add(imagBala);
-
+                
+                GenerarEnemigos();
             }
         }
     }
-
-
 }
+
 

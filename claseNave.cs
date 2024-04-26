@@ -26,7 +26,7 @@ namespace pryCatalaValentina
         {
             vida = 100;
             nombre = "jugador1";
-            puntosdaño = 1;
+            puntosdaño = 50;
 
             imagNave= new PictureBox();
             imagNave.SizeMode=PictureBoxSizeMode.StretchImage;
@@ -37,29 +37,31 @@ namespace pryCatalaValentina
 
         public void CrearEnemigo()
         {
-            vida = 25;
+            vida = 30;
             nombre = "Enemigo1";
-            puntosdaño = 2;
-            imagEnemigo1= new PictureBox();
+            puntosdaño = 50;
+            imagEnemigo1 = new PictureBox();
             imagEnemigo1.SizeMode = PictureBoxSizeMode.StretchImage;
-            imagEnemigo1.ImageLocation = "https://steamuserimages-a.akamaihd.net/ugc/510378163431176780/C5FF698338D98764BD4A44185C169A7F3B8FE7AD/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true";
+            imagEnemigo1.ImageLocation = "https://38.media.tumblr.com/f9d63a3eab931934425d7d8d98e48416/tumblr_inline_mlmyhgzoKU1qz4rgp.gif";
             imagEnemigo1.Size = new Size(150, 100);
+            
 
             vida = 25;
             nombre = "Enemigo2";
-            puntosdaño = 2;
+            puntosdaño = 50;
             imagEnemigo2 = new PictureBox();
             imagEnemigo2.SizeMode = PictureBoxSizeMode.StretchImage;
-            imagEnemigo2.ImageLocation = "https://static.wikia.nocookie.net/villains/images/b/b1/Cover256x256-99b1c09b43754854941695731f08bee7.jpg/revision/latest/scale-to-width-down/250?cb=20170622072933";
-            imagEnemigo2.Size = new Size(90, 100);
+            imagEnemigo2.ImageLocation = "https://art.pixilart.com/46897995ff44.gif";
+            imagEnemigo2.Size = new Size(150, 100);
 
-            vida = 25;
+
+            vida = 20;
             nombre = "Enemigo3";
-            puntosdaño = 2;
+            puntosdaño = 50;
             imagEnemigo3 = new PictureBox();
             imagEnemigo3.SizeMode = PictureBoxSizeMode.StretchImage;
-            imagEnemigo3.ImageLocation = "https://art.pixilart.com/thumb/5ce2059e8521.png";
-            imagEnemigo3.Size = new Size(90, 100);
+            imagEnemigo3.ImageLocation = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYcfCkWlJRkelAI68_ugZzeULa7_yYF7_ujXMI5Ujz7Hi27Z12dBrbZL_L3XDi9J6fN2c&usqp=CAU";
+            imagEnemigo3.Size = new Size(130, 100);
 
         }
 

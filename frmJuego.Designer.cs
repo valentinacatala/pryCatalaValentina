@@ -37,14 +37,17 @@
             // 
             timerDisparos.Tick += timerDisparos_Tick;
             // 
+            // timerEnemigos
+            // 
+            timerEnemigos.Tick += timerEnemigos_Tick;
+            // 
             // frmJuego
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            ClientSize = new System.Drawing.Size(700, 591);
+            ClientSize = new System.Drawing.Size(800, 788);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "frmJuego";
             Text = "frmJuego";
             Load += frmJuego_Load_1;
