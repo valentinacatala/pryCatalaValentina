@@ -32,7 +32,9 @@ namespace pryCatalaValentina
         }
 
         claseNave objNaveJugador;
+        claseNave objDisparos;
         PictureBox imagBala;
+        List<PictureBox> balas = new List<PictureBox>();
         Random Aleatorio = new Random();
         Random PosicionX = new Random();
         Random PosicionY = new Random();
@@ -66,58 +68,64 @@ namespace pryCatalaValentina
                 objNaveJugador.imagNave.Location = new Point(
                     objNaveJugador.imagNave.Location.X - 5, objNaveJugador.imagNave.Location.Y);
             }
+            if (e.KeyCode== Keys.Escape)
+            {
+                this.Close();
+            }
 
+        }
+        private void frmJuego_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                PictureBox nuevaBala = new PictureBox();
+                nuevaBala.SizeMode = PictureBoxSizeMode.StretchImage;
+                nuevaBala.ImageLocation = "https://toppng.com/uploads/thumbnail/alaga-galaga-missile-11562887504dfmxt6dqa0.png";
+                nuevaBala.Size = new Size(20, 30);
+                nuevaBala.Location = new Point(objNaveJugador.imagNave.Location.X + objNaveJugador.imagNave.Width / 2 - nuevaBala.Width / 2, objNaveJugador.imagNave.Location.Y);
+                Controls.Add(nuevaBala);
+
+                balas.Add(nuevaBala);
+                timerDisparos.Start();
+            }
         }
 
         private void timerDisparos_Tick(object sender, EventArgs e)
         {
-            if (imagBala != null)
+            for (int i = 0; i < balas.Count; i++)
             {
-                imagBala.Top -= 10;
-                imagBala.BringToFront();
+                PictureBox bala = balas[i];
+                bala.Top -= 30;
+                bala.BringToFront();
 
-                if (imagBala.Location.Y <= 0)
+                if (bala.Location.Y <= 0)
                 {
-
-                    imagBala.Dispose();
-                    imagBala = null;
-                    timerDisparos.Stop();
+                    balas.Remove(bala);
+                    bala.Dispose();
                 }
                 else
                 {
                     // Comprueba si la bala colisiona con algún enemigo
                     foreach (Control imagen in Controls)
                     {
-                        if (imagen.Tag == "Enemigo" && imagBala.Bounds.IntersectsWith(imagen.Bounds))
+                        if (imagen.Tag == "Enemigo" && bala.Bounds.IntersectsWith(imagen.Bounds))
                         {
-                            imagBala.Dispose();
+                            balas.Remove(bala);
+                            bala.Dispose();
                             imagen.Dispose();
-                            imagBala = null;
-                            timerDisparos.Stop();
                             break;
                         }
                     }
                 }
             }
 
-
-        }
-
-        private void frmJuego_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Space)
+            if (balas.Count == 0)
             {
-                imagBala = new PictureBox();
-                imagBala.SizeMode = PictureBoxSizeMode.StretchImage;
-                imagBala.ImageLocation = "https://toppng.com/uploads/thumbnail/alaga-galaga-missile-11562887504dfmxt6dqa0.png";
-                imagBala.Size = new Size(20, 30);
-                imagBala.Location = new Point(objNaveJugador.imagNave.Location.X + objNaveJugador.imagNave.Width / 2 - imagBala.Width / 2, objNaveJugador.imagNave.Location.Y);
-                Controls.Add(imagBala);
-
-                timerDisparos.Start();
-
+                timerDisparos.Stop();
             }
         }
+
+        
 
         private void GenerarEnemigos()
         {
