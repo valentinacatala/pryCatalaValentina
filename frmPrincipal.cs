@@ -26,14 +26,8 @@ namespace pryCatalaValentina
         {
 
         }
-        
 
-        private void firmasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void juegoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
         {
 
         }
