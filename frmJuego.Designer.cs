@@ -45,31 +45,31 @@
             // 
             // progressBar1
             // 
-            progressBar1.Location = new System.Drawing.Point(57, 14);
+            progressBar1.Location = new System.Drawing.Point(70, 19);
+            progressBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new System.Drawing.Size(114, 23);
+            progressBar1.Size = new System.Drawing.Size(130, 31);
             progressBar1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            label1.Location = new System.Drawing.Point(9, 18);
+            label1.Location = new System.Drawing.Point(10, 24);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(46, 15);
+            label1.Size = new System.Drawing.Size(57, 20);
             label1.TabIndex = 1;
             label1.Text = "SCORE:";
             // 
             // frmJuego
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            ClientSize = new System.Drawing.Size(700, 591);
+            ClientSize = new System.Drawing.Size(800, 788);
             Controls.Add(label1);
             Controls.Add(progressBar1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "frmJuego";
             Text = "frmJuego";
             Load += frmJuego_Load_1;

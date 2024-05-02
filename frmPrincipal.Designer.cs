@@ -1,0 +1,82 @@
+﻿namespace pryCatalaValentina
+{
+    partial class frmPrincipal
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = Properties.Resources.s_l1200;
+            pictureBox1.Image = Properties.Resources.s_l1200;
+            pictureBox1.Location = new System.Drawing.Point(121, 110);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(525, 195);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label1.ForeColor = System.Drawing.Color.FromArgb(255, 192, 128);
+            label1.Location = new System.Drawing.Point(225, 422);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(350, 25);
+            label1.TabIndex = 3;
+            label1.Text = "PRESIONA ESPACIO PARA EMPEZAR A JUGAR!";
+            // 
+            // frmPrincipal
+            // 
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            BackgroundImage = Properties.Resources.c54fa1235e6a5abee8c4e8e04aeba201;
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            ClientSize = new System.Drawing.Size(782, 741);
+            Controls.Add(label1);
+            Controls.Add(pictureBox1);
+            ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            Name = "frmPrincipal";
+            Text = "Bienvenido";
+            Load += frmPrincipal_Load;
+            KeyDown += frmPrincipal_KeyDown;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+    }
+}

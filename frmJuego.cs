@@ -23,7 +23,7 @@ namespace pryCatalaValentina
 
         private void frmJuego_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void frmJuego_KeyDown(object sender, KeyEventArgs e)
@@ -44,7 +44,7 @@ namespace pryCatalaValentina
             //tamaño del formulario
             this.Width = 900;
             this.Height = 1000;
-
+            
 
             objNaveJugador = new claseNave();
             objNaveJugador.CrearJuego();
