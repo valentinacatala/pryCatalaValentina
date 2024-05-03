@@ -61,12 +61,12 @@ namespace pryCatalaValentina
             if (e.KeyCode == Keys.Right)
             {
                 objNaveJugador.imagNave.Location = new Point(
-                    objNaveJugador.imagNave.Location.X + 5, objNaveJugador.imagNave.Location.Y);
+                    objNaveJugador.imagNave.Location.X + 15, objNaveJugador.imagNave.Location.Y);
             }
             if (e.KeyCode == Keys.Left)
             {
                 objNaveJugador.imagNave.Location = new Point(
-                    objNaveJugador.imagNave.Location.X - 5, objNaveJugador.imagNave.Location.Y);
+                    objNaveJugador.imagNave.Location.X - 15, objNaveJugador.imagNave.Location.Y);
             }
             if (e.KeyCode== Keys.Escape)
             {

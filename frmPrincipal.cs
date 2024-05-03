@@ -20,6 +20,8 @@ namespace pryCatalaValentina
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            this.Width = 900;
+            this.Height = 1000;
             this.KeyPreview = true;
         }
 
