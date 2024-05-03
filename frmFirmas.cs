@@ -35,9 +35,9 @@ namespace pryCatalaValentina
         {
             if (e.Button == MouseButtons.Left)
             {
-                using (Graphics objetoLoco = Graphics.FromImage(ArchivoImagen))
+                using (Graphics objeto = Graphics.FromImage(ArchivoImagen))
                 {
-                    objetoLoco.FillEllipse(Brushes.White, e.X, e.Y, 5, 5);
+                    objeto.FillEllipse(Brushes.Gray, e.X, e.Y, 5, 5);
                 }
                 pictureBox1.Image = ArchivoImagen;
             }
@@ -56,6 +56,11 @@ namespace pryCatalaValentina
         {
             ArchivoImagen = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = ArchivoImagen;
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
