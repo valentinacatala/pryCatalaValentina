@@ -210,8 +210,7 @@ namespace pryCatalaValentina
                     break;
                 }
             }
-
-            // Si no hay enemigos, generar nuevos enemigos
+            // Si no hay enemigos, generar nuevos 
             if (!EnemigosExistentes)
             {
                 
@@ -224,7 +223,7 @@ namespace pryCatalaValentina
         private void EliminarEnemigo(PictureBox enemigoEliminado)
         {
             // Incrementa el puntaje cuando se elimina un enemigo
-            puntaje += 10; // Puedes ajustar la cantidad de puntos según lo desees
+            puntaje += 10; 
 
             // Actualiza el valor de la ProgressBar con el nuevo puntaje
             progressBarScore.Value = puntaje;
@@ -233,19 +232,16 @@ namespace pryCatalaValentina
             Controls.Remove(enemigoEliminado);
             enemigoEliminado.Dispose();
 
-            // Verifica si se han eliminado todos los enemigos
             if (TodosEnemigosEliminados())
             {
-                // Si todos los enemigos han sido eliminados, reinicia el puntaje y la ProgressBar
                 puntaje = 0;
                 progressBarScore.Value = puntaje;
-                GenerarEnemigos(); // Vuelve a generar enemigos para continuar el juego
+                GenerarEnemigos();
             }
         }
 
         private bool TodosEnemigosEliminados()
         {
-            // Verifica si no hay ningún enemigo en el formulario
             foreach (Control control in Controls)
             {
                 if (control is PictureBox && control.Tag != null && control.Tag.ToString() == "Enemigo")
