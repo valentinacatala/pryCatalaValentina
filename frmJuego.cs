@@ -110,9 +110,11 @@ namespace pryCatalaValentina
                     {
                         if (imagen.Tag == "Enemigo" && bala.Bounds.IntersectsWith(imagen.Bounds))
                         {
+                            
                             balas.Remove(bala);
                             bala.Dispose();
                             imagen.Dispose();
+                            EliminarEnemigo((PictureBox)imagen);
                             break;
                         }
                     }
@@ -216,6 +218,44 @@ namespace pryCatalaValentina
                 GenerarEnemigos();
             }
         }
+
+        int puntaje = 0;
+
+        private void EliminarEnemigo(PictureBox enemigoEliminado)
+        {
+            // Incrementa el puntaje cuando se elimina un enemigo
+            puntaje += 10; // Puedes ajustar la cantidad de puntos según lo desees
+
+            // Actualiza el valor de la ProgressBar con el nuevo puntaje
+            progressBarScore.Value = puntaje;
+
+            // Elimina el enemigo de la lista de controles y del formulario
+            Controls.Remove(enemigoEliminado);
+            enemigoEliminado.Dispose();
+
+            // Verifica si se han eliminado todos los enemigos
+            if (TodosEnemigosEliminados())
+            {
+                // Si todos los enemigos han sido eliminados, reinicia el puntaje y la ProgressBar
+                puntaje = 0;
+                progressBarScore.Value = puntaje;
+                GenerarEnemigos(); // Vuelve a generar enemigos para continuar el juego
+            }
+        }
+
+        private bool TodosEnemigosEliminados()
+        {
+            // Verifica si no hay ningún enemigo en el formulario
+            foreach (Control control in Controls)
+            {
+                if (control is PictureBox && control.Tag != null && control.Tag.ToString() == "Enemigo")
+                {
+                    return false; // Todavía hay enemigos en pantalla
+                }
+            }
+            return true; // No hay enemigos en pantalla
+        }
+
     }
 }
 
