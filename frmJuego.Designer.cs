@@ -33,6 +33,7 @@
             timerEnemigos = new System.Windows.Forms.Timer(components);
             progressBarScore = new System.Windows.Forms.ProgressBar();
             label1 = new System.Windows.Forms.Label();
+            timerExplosion = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // timerDisparos
@@ -65,6 +66,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoSize = true;
             BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             ClientSize = new System.Drawing.Size(800, 788);
             Controls.Add(label1);
@@ -85,5 +87,6 @@
         private System.Windows.Forms.Timer timerEnemigos;
         private System.Windows.Forms.ProgressBar progressBarScore;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timerExplosion;
     }
 }

@@ -23,7 +23,7 @@ namespace pryCatalaValentina
 
         private void frmJuego_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void frmJuego_KeyDown(object sender, KeyEventArgs e)
@@ -38,13 +38,13 @@ namespace pryCatalaValentina
         Random Aleatorio = new Random();
         Random PosicionX = new Random();
         Random PosicionY = new Random();
-       
+
         private void frmJuego_Load_1(object sender, EventArgs e)
         {
             //tamaño del formulario
             this.Width = 900;
             this.Height = 1000;
-            
+
 
             objNaveJugador = new claseNave();
             objNaveJugador.CrearJuego();
@@ -68,7 +68,7 @@ namespace pryCatalaValentina
                 objNaveJugador.imagNave.Location = new Point(
                     objNaveJugador.imagNave.Location.X - 15, objNaveJugador.imagNave.Location.Y);
             }
-            if (e.KeyCode== Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
             }
@@ -110,7 +110,7 @@ namespace pryCatalaValentina
                     {
                         if (imagen.Tag == "Enemigo" && bala.Bounds.IntersectsWith(imagen.Bounds))
                         {
-                            
+                            MostrarExplosion(imagen.Location);
                             balas.Remove(bala);
                             bala.Dispose();
                             imagen.Dispose();
@@ -127,7 +127,7 @@ namespace pryCatalaValentina
             }
         }
 
-        
+
 
         private void GenerarEnemigos()
         {
@@ -190,7 +190,6 @@ namespace pryCatalaValentina
 
             }
         }
-        
 
         private void TimerNuevoEnemigo()
         {
@@ -201,7 +200,7 @@ namespace pryCatalaValentina
         private void timerEnemigos_Tick(object sender, EventArgs e)
         {
             bool EnemigosExistentes = false;
-        
+
             foreach (Control control in Controls)
             {
                 if (control.Tag != null && control.Tag.ToString() == "Enemigo")
@@ -213,17 +212,36 @@ namespace pryCatalaValentina
             // Si no hay enemigos, generar nuevos 
             if (!EnemigosExistentes)
             {
-                
+
                 GenerarEnemigos();
             }
         }
 
-        int puntaje = 0;
+        private void MostrarExplosion(Point explosionLocation)
+        {
+            PictureBox explosion = new PictureBox();
+            explosion.SizeMode = PictureBoxSizeMode.StretchImage;
+            explosion.ImageLocation = "https://i.gifer.com/origin/62/623cdcca882db2d7efa8d32424a61d29_w200.gif";
+            explosion.Size = new Size(130, 90);
+            explosion.Location = explosionLocation;
+            Controls.Add(explosion);
 
+            timerExplosion.Interval = 1000; // Duración de la explosión en milisegundos
+            timerExplosion.Tick += (s, ev) =>
+            {
+                timerExplosion.Stop();
+                Controls.Remove(explosion);
+                explosion.Dispose();
+            };
+            timerExplosion.Start();
+        }
+
+
+        int puntaje = 0;
         private void EliminarEnemigo(PictureBox enemigoEliminado)
         {
             // Incrementa el puntaje cuando se elimina un enemigo
-            puntaje += 10; 
+            puntaje += 10;
 
             // Actualiza el valor de la ProgressBar con el nuevo puntaje
             progressBarScore.Value = puntaje;
@@ -239,7 +257,6 @@ namespace pryCatalaValentina
                 GenerarEnemigos();
             }
         }
-
         private bool TodosEnemigosEliminados()
         {
             foreach (Control control in Controls)
@@ -252,6 +269,7 @@ namespace pryCatalaValentina
             return true; // No hay enemigos en pantalla
         }
 
+        
     }
 }
 
