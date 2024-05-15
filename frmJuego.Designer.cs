@@ -34,6 +34,8 @@
             progressBarScore = new System.Windows.Forms.ProgressBar();
             label1 = new System.Windows.Forms.Label();
             timerExplosion = new System.Windows.Forms.Timer(components);
+            lblNombreJugador = new System.Windows.Forms.Label();
+            lblNiveles = new System.Windows.Forms.Label();
             SuspendLayout();
             // 
             // timerDisparos
@@ -46,7 +48,7 @@
             // 
             // progressBarScore
             // 
-            progressBarScore.Location = new System.Drawing.Point(70, 19);
+            progressBarScore.Location = new System.Drawing.Point(77, 20);
             progressBarScore.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             progressBarScore.Name = "progressBarScore";
             progressBarScore.Size = new System.Drawing.Size(237, 31);
@@ -55,12 +57,34 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Impact", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            label1.Location = new System.Drawing.Point(10, 24);
+            label1.Location = new System.Drawing.Point(15, 27);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(57, 20);
+            label1.Size = new System.Drawing.Size(56, 21);
             label1.TabIndex = 1;
             label1.Text = "SCORE:";
+            // 
+            // lblNombreJugador
+            // 
+            lblNombreJugador.AutoSize = true;
+            lblNombreJugador.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            lblNombreJugador.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            lblNombreJugador.Location = new System.Drawing.Point(268, 674);
+            lblNombreJugador.Name = "lblNombreJugador";
+            lblNombreJugador.Size = new System.Drawing.Size(0, 25);
+            lblNombreJugador.TabIndex = 2;
+            // 
+            // lblNiveles
+            // 
+            lblNiveles.AutoSize = true;
+            lblNiveles.Font = new System.Drawing.Font("Impact", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            lblNiveles.ForeColor = System.Drawing.Color.White;
+            lblNiveles.Location = new System.Drawing.Point(561, 20);
+            lblNiveles.Name = "lblNiveles";
+            lblNiveles.Size = new System.Drawing.Size(87, 35);
+            lblNiveles.TabIndex = 3;
+            lblNiveles.Text = "Nivel 1";
             // 
             // frmJuego
             // 
@@ -69,6 +93,8 @@
             AutoSize = true;
             BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             ClientSize = new System.Drawing.Size(800, 788);
+            Controls.Add(lblNiveles);
+            Controls.Add(lblNombreJugador);
             Controls.Add(label1);
             Controls.Add(progressBarScore);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -88,5 +114,7 @@
         private System.Windows.Forms.ProgressBar progressBarScore;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timerExplosion;
+        private System.Windows.Forms.Label lblNombreJugador;
+        private System.Windows.Forms.Label lblNiveles;
     }
 }

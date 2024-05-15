@@ -18,6 +18,7 @@ namespace pryCatalaValentina
             InitializeComponent();
         }
 
+        private string nombreJugador;
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             this.Width = 900;
@@ -29,9 +30,10 @@ namespace pryCatalaValentina
         {
             if (e.KeyCode == Keys.Space)
             {
+                nombreJugador = txtNombre.Text;
                 this.Hide();
 
-                frmJuego frmJuego = new frmJuego();
+                frmJuego frmJuego = new frmJuego(nombreJugador);
                 frmJuego.Show();
                 
             }

@@ -14,10 +14,11 @@ namespace pryCatalaValentina
     public partial class frmJuego : Form
     {
 
-
-        public frmJuego()
+        private string nombreJugador;
+        public frmJuego(string nombre)
         {
             InitializeComponent();
+            nombreJugador = nombre;
         }
 
 
@@ -38,18 +39,25 @@ namespace pryCatalaValentina
         Random Aleatorio = new Random();
         Random PosicionX = new Random();
         Random PosicionY = new Random();
+        private int nivelActual = 1;
 
         private void frmJuego_Load_1(object sender, EventArgs e)
         {
+            
             //tamaño del formulario
             this.Width = 900;
             this.Height = 1000;
 
+            
 
             objNaveJugador = new claseNave();
             objNaveJugador.CrearJuego();
-            objNaveJugador.imagNave.Location = new Point(350, 700);
+            objNaveJugador.imagNave.Location = new Point(350, 800);
             Controls.Add(objNaveJugador.imagNave);
+
+            lblNombreJugador.Text = nombreJugador;
+            lblNombreJugador.Location = new Point(objNaveJugador.imagNave.Location.X + objNaveJugador.imagNave.Width / 2 - lblNombreJugador.Width / 2,
+                                                   objNaveJugador.imagNave.Location.Y + objNaveJugador.imagNave.Height);
 
             GenerarEnemigos();
             TimerNuevoEnemigo();
@@ -62,11 +70,18 @@ namespace pryCatalaValentina
             {
                 objNaveJugador.imagNave.Location = new Point(
                     objNaveJugador.imagNave.Location.X + 15, objNaveJugador.imagNave.Location.Y);
+
+                lblNombreJugador.Location = new Point(objNaveJugador.imagNave.Location.X + objNaveJugador.imagNave.Width / 2 - lblNombreJugador.Width / 2,
+                                               objNaveJugador.imagNave.Location.Y + objNaveJugador.imagNave.Height);
             }
+     
             if (e.KeyCode == Keys.Left)
             {
                 objNaveJugador.imagNave.Location = new Point(
                     objNaveJugador.imagNave.Location.X - 15, objNaveJugador.imagNave.Location.Y);
+
+                lblNombreJugador.Location = new Point(objNaveJugador.imagNave.Location.X + objNaveJugador.imagNave.Width / 2 - lblNombreJugador.Width / 2,
+                                               objNaveJugador.imagNave.Location.Y + objNaveJugador.imagNave.Height);
             }
             if (e.KeyCode == Keys.Escape)
             {
@@ -128,7 +143,6 @@ namespace pryCatalaValentina
         }
 
 
-
         private void GenerarEnemigos()
         {
             int posX = 0;
@@ -140,7 +154,7 @@ namespace pryCatalaValentina
                 int codigoEnemigo = Aleatorio.Next(1000, 3000);
 
                 posX = PosicionX.Next(0, 700);
-                posY = PosicionY.Next(0, 400);
+                posY = PosicionY.Next(100, 500);
 
                 bool posicion = true;
                 foreach (Control control in Controls)
@@ -246,15 +260,17 @@ namespace pryCatalaValentina
             // Actualiza el valor de la ProgressBar con el nuevo puntaje
             progressBarScore.Value = puntaje;
 
-            // Elimina el enemigo de la lista de controles y del formulario
             Controls.Remove(enemigoEliminado);
             enemigoEliminado.Dispose();
 
             if (TodosEnemigosEliminados())
             {
+                nivelActual++;
                 puntaje = 0;
                 progressBarScore.Value = puntaje;
                 GenerarEnemigos();
+
+                lblNiveles.Text = "Nivel " + nivelActual.ToString();
             }
         }
         private bool TodosEnemigosEliminados()
@@ -269,7 +285,6 @@ namespace pryCatalaValentina
             return true; // No hay enemigos en pantalla
         }
 
-        
     }
 }
 
