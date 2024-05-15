@@ -80,7 +80,7 @@
             lblNiveles.AutoSize = true;
             lblNiveles.Font = new System.Drawing.Font("Impact", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             lblNiveles.ForeColor = System.Drawing.Color.White;
-            lblNiveles.Location = new System.Drawing.Point(561, 20);
+            lblNiveles.Location = new System.Drawing.Point(569, 16);
             lblNiveles.Name = "lblNiveles";
             lblNiveles.Size = new System.Drawing.Size(87, 35);
             lblNiveles.TabIndex = 3;
