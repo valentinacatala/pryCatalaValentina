@@ -79,7 +79,6 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            AutoSize = true;
             BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             BackgroundImage = Properties.Resources.c54fa1235e6a5abee8c4e8e04aeba201;
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;

@@ -165,7 +165,7 @@ namespace pryCatalaValentina
                         if (Math.Abs(enemigoExistente.Location.X - posX) < enemigoExistente.Width &&
                             Math.Abs(enemigoExistente.Location.Y - posY) < enemigoExistente.Height)
                         {
-                            // La posición generada se superpone con un enemigo existente, por lo que no es válida
+                            // La posición generada se superpone con un enemigo existente
                             posicion = false;
                             break;
                         }
@@ -224,24 +224,24 @@ namespace pryCatalaValentina
                 }
             }
             // Si no hay enemigos, generar nuevos 
-            if (!EnemigosExistentes)
+            if (EnemigosExistentes == false)
             {
 
                 GenerarEnemigos();
             }
         }
 
-        private void MostrarExplosion(Point explosionLocation)
+        private void MostrarExplosion(Point explosionPoint)
         {
             PictureBox explosion = new PictureBox();
             explosion.SizeMode = PictureBoxSizeMode.StretchImage;
             explosion.ImageLocation = "https://i.gifer.com/origin/62/623cdcca882db2d7efa8d32424a61d29_w200.gif";
             explosion.Size = new Size(130, 90);
-            explosion.Location = explosionLocation;
+            explosion.Location = explosionPoint;
             Controls.Add(explosion);
 
             timerExplosion.Interval = 1000; // Duración de la explosión en milisegundos
-            timerExplosion.Tick += (s, ev) =>
+            timerExplosion.Tick += (sender, e) =>
             {
                 timerExplosion.Stop();
                 Controls.Remove(explosion);
